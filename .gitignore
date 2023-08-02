@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+@babel/plugin-proposal-private-property-in-object
 # production
 /build
 
