@@ -1,9 +1,17 @@
 import './App.css';
 import Alert from './components/Alert';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import React,{ useState } from 'react';
+
+import {
+  BrowserRouter as Router,
+  // Switch
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   const [mode,setMode] = useState('light');
@@ -36,12 +44,17 @@ function App() {
   
   return (
   <>
+  <Router>
    <Navbar title="EssayEditor" mode={mode} toggleMode={toggleMode} aboutText='About'/>
    <Alert alert={alert}/>
-   <div className= "container my-3">
-   <Textform showAlert={showAlert} heading="Enter Text to analyze" mode={mode}  toggleMode={toggleMode} />
-   {/* <About/> */}
+   <div className="container my-3">
+  <Routes>
+       <Route  exact path="/about" element={<About/>}/>
+       <Route  exact path="/" element={<Textform showAlert={showAlert} heading="Enter the text to analyze" mode={mode}/>}/>
+        {/* <Textform showAlert={showAlert} heading="Try TextUtils - word counter, character counter, remove extra spaces" mode={mode}/> */}
+    </Routes>
    </div>
+  </Router>
   </>
   );
 }
